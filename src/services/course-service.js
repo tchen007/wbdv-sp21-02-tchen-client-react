@@ -14,38 +14,18 @@ class CourseService {
             .then(response => response.json())
             .catch(() => throw new Error('Failed to create new course'));
     }
-        // }).then(function (response) {
-        //     return response.json();
-        //     .catch(function () {
-        //         throw new Error('Failed to create new course');
-        // });
-    // }
 
     findAllCourses() {
         return fetch(this._url)
             .then(response => response.json())
             .catch(() => throw new Error('Could not retrieve courses'));
     }
-        // .then(function (response) {
-            //     return response.json();
-            // })
-            // .catch(function () {
-            //     throw new Error('Could retrieve courses');
-            // });
-    // }
 
     findCourseById(id) {
         return fetch(`${this._url}/${id}`)
             .then(response => response.json())
             .catch(() => throw new Error('Could not retrieve course'));
     }
-        // .then(function (response) {
-            //     return response.json();
-            // })
-            // .catch(function () {
-            //     throw new Error('Could not retrieve user info');
-            // });
-    // }
 
     updateCourse(id, course) {
         return fetch(`${this._url}/${id}`, {
@@ -56,19 +36,10 @@ class CourseService {
             .catch(() => throw new Error('Could not retrieve course'));
     }
 
-    // .catch(function () {
-    //             throw new Error('Failed to update user');
-    //         });
-    // }
-
     deleteCourse(id) {
         return fetch(`${this._url}/${id}`, {
             method: "DELETE"
         })
             .catch(() => throw new Error('Failed to delete course'));
     }
-    // .catch(function () {
-    //             throw new Error('Failed to delete course');
-    //         });
-    // }
 }
