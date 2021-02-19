@@ -1,0 +1,1 @@
+// Row of a single course, used in course-row

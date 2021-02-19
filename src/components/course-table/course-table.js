@@ -1,0 +1,1 @@
+// Renders an array of courses as a table - course/row
