@@ -12,8 +12,10 @@ code {
     monospace;
 }
 
-.wbdv-bottom-right {
-  position: fixed;
-  bottom: 20px;
-  right: 45px;
+.wbdv-table-width-title {
+  width: 35%;
+}
+
+.wbdv-table-width-other {
+  width: 25%
 }
