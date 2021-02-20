@@ -1,7 +1,7 @@
 // CourseService - service client for data communications with server
 export default class CourseService {
     constructor() {
-        this._url = "https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses";
+        this._url = "https://wbdv-generic-server.herokuapp.com/api/tchen007/courses";
         this._header = {'content-type': 'application/json'}
     }
 

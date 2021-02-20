@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+import $ from 'jquery';
 import CourseService from "../../services/course-service"
 import CourseTable from "../course-table/course-table";
 // import CourseGrid from "./course-grid/course-grid";
@@ -9,10 +10,13 @@ export default class CourseManager extends React.Component {
     constructor(props) {
         super(props);
         this.courseService = new CourseService();
+        this.day = new Date();
+        this.options = {year: 'numeric', month: 'numeric', day: 'numeric' };
         this.state = {
             courses: []
         };
     }
+
 
     // Study notes: Methods are called in the following order when instance of component is created / inserted into Dom
     // constructor, getDervivedStateFromProps(), render(), componentDidMount()
@@ -20,11 +24,39 @@ export default class CourseManager extends React.Component {
         this.courseService.findAllCourses()
             .then(courses => {
                 this.setState({courses: courses});
-                console.log(this.state);
             });
 
+    addCourse = () => {
+        let $courseTitleFld = document.getElementById('courseTitleFld')
+        const newCourse = {
+            title: $courseTitleFld.value,
+            owner: "Tiffany",
+            lastModified: this.day.toLocaleDateString(undefined, this.options),
+        }
+        this.courseService.createCourse(newCourse)
+            .then(courseServerResponse => {
+                this.setState(
+                    // Correct - concat returns new array
+                    // {courses: this.state.courses.concat(courseServerResponse)});
+                    // ES6 spreader way and could also do prevState approach such as in deleteCourse
+                    {courses: [...this.state.courses, courseServerResponse]})
+                $courseTitleFld.value = "";
+            });
+    }
+
+    deleteCourse = (courseId) => {
+        this.courseService.deleteCourse(courseId)
+            .then(() => {
+                this.setState((prevState) => (
+                    {courses: prevState.courses.filter(deletedC => deletedC._id !== courseId)}
+                    ));
+                console.log(this.state.courses)
+                }
+            );
+    };
+
     updateCourse = (course) => {};
-    deleteCourse = (course) => {};
+
 
 
     render() {
@@ -46,9 +78,12 @@ export default class CourseManager extends React.Component {
                         </div>
                     </div>
                     <div className="col-lg-10 my-3 custom-control-inline float-right">
-                        <input className="form-control font-italic my-3 col-10" type="text" placeholder="New Course Title"/>
+                        <input
+                            onChange={(event) => this.newTitle = event.target.value}
+                            className="form-control font-italic my-3 col-10" id="courseTitleFld"
+                            type="text" placeholder="New Course Title"/>
                         <button className="btn btn-danger rounded-circle m-3">
-                            <i className="fas fa-plus"/>
+                            <i onClick={() => this.addCourse()} className="fas fa-plus"/>
                         </button>
                     </div>
                 </nav>
