@@ -20,9 +20,9 @@ export default class CourseTable extends React.Component {
                         <th className="wbdv-table-width-other d-none d-sm-table-cell">Owned by</th>
                         <th className="wbdv-table-width-other d-none d-md-table-cell">Last modified on</th>
                         <th className="wbdv-table-width-other text-right">
-                            <i className="fas fa-folder fa-lg fa-fw mr-2"></i>
-                            <i className="fas fa-sort-alpha-up-alt fa-lg fa-fw mr-2"></i>
-                            <i className="fas fa-th fa-lg fa-fw mr-2"></i>
+                            <i className="fas fa-folder fa-lg fa-fw mr-2"/>
+                            <i className="fas fa-sort-alpha-up-alt fa-lg fa-fw mr-2"/>
+                            <i className="fas fa-th fa-lg fa-fw mr-2"/>
                         </th>
 
                     </tr>

@@ -16,10 +16,10 @@ export default class CourseManager extends React.Component {
 
     // Study notes: Methods are called in the following order when instance of component is created / inserted into Dom
     // constructor, getDervivedStateFromProps(), render(), componentDidMount()
-    componentsDidMount = () =>
+    componentDidMount = () =>
         this.courseService.findAllCourses()
             .then(courses => {
-                this.setState({courses});
+                this.setState({courses: courses});
                 console.log(this.state);
             });
 
@@ -48,7 +48,7 @@ export default class CourseManager extends React.Component {
                     <div className="col-lg-10 my-3 custom-control-inline float-right">
                         <input className="form-control font-italic my-3 col-10" type="text" placeholder="New Course Title"/>
                         <button className="btn btn-danger rounded-circle m-3">
-                            <i className="fas fa-plus"></i>
+                            <i className="fas fa-plus"/>
                         </button>
                     </div>
                 </nav>

@@ -19,7 +19,7 @@ const CourseRow = (
     const [editing, setEditing] = useState(false)
     const [newTitle, setNewTitle] = useState(title)
 
-    const saveTitle = () => {
+    const saveCourse = () => {
         setEditing(false)
         const newCourse = {
             ...course,
@@ -28,6 +28,36 @@ const CourseRow = (
         }
         updateCourse(newCourse);
     }
+
+    return (
+        <tr>
+            {/*Title column*/}
+            <td>
+                { !editing && <span>{title}</span>}
+                {/*// <Link to="/courses/editor">*/}
+                {/*//         Testing*/}
+                {/*//     </Link>*/}
+                {/*// }*/}
+
+                { editing &&
+                <input onChange={(event) => setNewTitle(event.target.value)}
+                    value={newTitle}
+                    className="form-control"/>
+                }
+            </td>
+            <td className="d-none d-sm-table-cell">{owner}</td>
+            <td className="d-none d-md-table-cell">{lastModified}</td>
+            {/*Icons for row, delete and edit only show when editing is true*/}
+            <td className="text-right">
+                {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit fa-lg mr-2"/>}
+                {editing && <i onClick={() => saveCourse()} className="fas fa-check fa-lg mr-2"/>}
+                {editing && <i onClick={() => deleteCourse(course)} className="fas fa-minus-circle fa-lg mx-2"/>}
+            </td>
+        </tr>
+
+
+
+    )
 }
 
 export default CourseRow
