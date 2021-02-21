@@ -55,9 +55,19 @@ export default class CourseManager extends React.Component {
             );
     };
 
-    updateCourse = (course) => {};
-
-
+    updateCourse = (updatedCourse) => {
+        console.log(updatedCourse);
+        this.courseService.updateCourse(updatedCourse._id, updatedCourse)
+            .then(() => {
+                this.setState((prevState) => (
+                    {courses: prevState.courses.map(
+                            (c) => c._id === updatedCourse._id ? updatedCourse : c)
+                    }
+                ));
+                console.log("Where the log at?");
+                console.log(this.state);
+            });
+    };
 
     render() {
         return(
@@ -88,10 +98,12 @@ export default class CourseManager extends React.Component {
                     </div>
                 </nav>
 
-                <CourseTable
-                    updateCourse={this.updateCourse}
-                    deleteCourse={this.deleteCourse}
-                    courses={this.state.courses}/>
+                {/*<CourseTable*/}
+                {/*    updateCourse={this.updateCourse}*/}
+                {/*    deleteCourse={this.deleteCourse}*/}
+                {/*    courses={this.state.courses}/>*/}
+
+
 
                 {/*Button at Bottom Right*/}
                 <div className="col-12">
