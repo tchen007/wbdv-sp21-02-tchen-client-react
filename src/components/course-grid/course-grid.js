@@ -22,7 +22,9 @@ const CourseGrid = (
                 <span className="text-right col-xl-4 col-lg-4 col-md-4 col-sm-12 col-11">
                     <i className="fas fa-folder fa-lg fa-fw mr-2"/>
                     <i className="fas fa-sort-alpha-up-alt fa-lg fa-fw mr-2"/>
-                    <i className="fas fa-list fa-lg fa-fw mr-2"/>
+                     <Link to="/courses/table">
+                        <i className="fas fa-list fa-lg fa-fw mr-2 text-dark"/>
+                     </Link>
                 </span>
             </div>
             <div className="row mx-3">

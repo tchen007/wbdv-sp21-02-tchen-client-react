@@ -23,7 +23,9 @@ export default class CourseTable extends React.Component {
                         <th className="wbdv-table-width-other text-right">
                             <i className="fas fa-folder fa-lg fa-fw mr-2"/>
                             <i className="fas fa-sort-alpha-up-alt fa-lg fa-fw mr-2"/>
-                            <i className="fas fa-th fa-lg fa-fw mr-2"/>
+                            <Link to="/courses/grid">
+                                <i className="fas fa-th fa-lg fa-fw mr-2 text-dark"/>
+                            </Link>
                         </th>
 
                     </tr>

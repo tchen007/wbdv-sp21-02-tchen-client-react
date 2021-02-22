@@ -26,7 +26,8 @@ const CourseCard = (
     ]
 
     const saveCourse = () => {
-        setEditing(false)
+        setEditing(false);
+        if (newTitle === course.title) {return};
         const newCourse = {
             ...course,
             title: newTitle,
@@ -40,14 +41,18 @@ const CourseCard = (
             <div className="card text-center">
                 <img src={picturesSrc[index % 7]} className="card-img-top" alt="..."/>
                 <div className="card-body d-flex flex-column">
-                    { !editing && <h5 className="card-title text-truncate">{course.title}</h5> }
+                    { !editing &&
+                        <Link to="/editor">
+                            <h5 className="card-title text-truncate text-dark">{course.title}</h5>
+                        </Link>
+                    }
                     { editing &&
                     <input onChange={(event) => setNewTitle(event.target.value)}
                            value={newTitle}
                            className="form-control"/>
                     }
                     <p className="card-text">Some description about class.</p>
-                    <a href="#" className="btn btn-primary text-truncate mt-auto mb-4">{course.title}</a>
+                    <Link to="/editor" className="btn btn-primary text-truncate mt-auto mb-4">{course.title}</Link>
                     <div className="text-right mt-auto">
                         {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit fa-lg mr-2 text-primary"/>}
                         {editing && <i  onClick={saveCourse} className="fas fa-check fa-lg mr-2 text-success"/>}

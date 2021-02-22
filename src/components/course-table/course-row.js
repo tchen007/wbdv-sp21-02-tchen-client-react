@@ -20,7 +20,8 @@ const CourseRow = (
     const [newTitle, setNewTitle] = useState(title)
 
     const saveCourse = () => {
-        setEditing(false)
+        setEditing(false);
+        if (newTitle === course.title) {return};
         const newCourse = {
             ...course,
             title: newTitle,
@@ -34,15 +35,11 @@ const CourseRow = (
             {/*Title column*/}
             <td>
                 { !editing &&
-                    <div>
+                    <Link to="/editor">
                         <i className="fas fa-file fa-lg fa-fw mr-1 text-primary"/>
-                        {title}
-                    </div>
+                        <span className="text-dark">{title}</span>
+                    </Link>
                 }
-                {/*// <Link to="/courses/editor">*/}
-                {/*//         Testing*/}
-                {/*//     </Link>*/}
-                {/*// }*/}
 
                 { editing &&
                 <input onChange={(event) => setNewTitle(event.target.value)}

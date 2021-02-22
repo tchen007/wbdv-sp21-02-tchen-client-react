@@ -3,7 +3,7 @@ import $ from 'jquery';
 import CourseService from "../../services/course-service"
 import CourseTable from "../course-table/course-table";
 // import CourseGrid from "./course-grid/course-grid";
-import {Link, Route} from "react-router-dom";
+import {Switch, Route, Redirect} from "react-router-dom";
 import './course-manager.css';
 import CourseGrid from "../course-grid/course-grid";
 
@@ -101,17 +101,22 @@ export default class CourseManager extends React.Component {
                         </button>
                     </div>
                 </nav>
-
-                {/*<CourseTable*/}
-                {/*    updateCourse={this.updateCourse}*/}
-                {/*    deleteCourse={this.deleteCourse}*/}
-                {/*    courses={this.state.courses}/>*/}
-
-                <CourseGrid
-                    updateCourse={this.updateCourse}
-                    deleteCourse={this.deleteCourse}
-                    courses={this.state.courses}
-                />
+                <Switch>
+                    <Route path={["/", "/courses", "/courses/table"]} exact={true}>
+                        <CourseTable
+                            updateCourse={this.updateCourse}
+                            deleteCourse={this.deleteCourse}
+                            courses={this.state.courses}/>
+                    </Route>
+                    <Route path="/courses/grid" exact={true}>
+                        <CourseGrid
+                            updateCourse={this.updateCourse}
+                            deleteCourse={this.deleteCourse}
+                            courses={this.state.courses}
+                        />
+                    </Route>
+                    <Redirect from="*" to="/"/>
+                </Switch>
 
                 {/*Button at Bottom Right*/}
                 <div className="row col-12">
