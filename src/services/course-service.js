@@ -1,4 +1,6 @@
 // CourseService - service client for data communications with server
+// No handling for a non-200 response.
+
 export default class CourseService {
     constructor() {
         this._url = "https://wbdv-generic-server.herokuapp.com/api/tchen007/courses";
@@ -12,19 +14,16 @@ export default class CourseService {
             body: JSON.stringify(course)
         })
             .then(response => response.json())
-            // .catch(() => throw new Error('Failed to create new course'));
     }
 
     findAllCourses() {
         return fetch(this._url)
             .then(response => response.json())
-            // .catch(() => throw new Error('Could not retrieve courses'));
     }
 
     findCourseById(id) {
         return fetch(`${this._url}/${id}`)
             .then(response => response.json())
-            // .catch(() => throw new Error('Could not retrieve course'));
     }
 
     updateCourse(id, course) {
@@ -33,13 +32,11 @@ export default class CourseService {
             headers: this._header,
             body: JSON.stringify(course)
         })
-            // .catch(() => throw new Error('Could not retrieve course'));
     }
 
     deleteCourse(id) {
         return fetch(`${this._url}/${id}`, {
             method: "DELETE"
         })
-            // .catch(() => throw new Error('Failed to delete course'));
     }
 }

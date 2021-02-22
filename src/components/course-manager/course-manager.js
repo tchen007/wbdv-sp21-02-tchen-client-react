@@ -1,9 +1,7 @@
 import React, {useState} from "react";
-import $ from 'jquery';
 import CourseService from "../../services/course-service"
 import CourseTable from "../course-table/course-table";
-// import CourseGrid from "./course-grid/course-grid";
-import {Switch, Route, Redirect} from "react-router-dom";
+import {Switch, Route, Redirect, Link} from "react-router-dom";
 import './course-manager.css';
 import CourseGrid from "../course-grid/course-grid";
 
@@ -85,8 +83,7 @@ export default class CourseManager extends React.Component {
                         </button>
                         <div className="navbar-brand font-weight-bold d-none d-lg-block my-3 ml-5" >Course Manager</div>
                         <div className="dropdown-menu" aria-labelledby="navbarMenuDropdown">
-                            {/*Reformat to a Route or Link to=*/}
-                            <a className="dropdown-item" href="../index.html">Home</a>
+                            <Link to="/editor" className="dropdown-item">Editor</Link>
                             <a className="dropdown-item" href="../login/login.template.client.html">Login</a>
                             <a className="dropdown-item" href="../profile/profile.template.client.html">Profile</a>
                         </div>
