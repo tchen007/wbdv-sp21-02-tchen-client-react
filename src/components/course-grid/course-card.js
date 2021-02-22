@@ -16,6 +16,8 @@ const CourseCard = (
     const options = {year: 'numeric', month: 'numeric', day: 'numeric' };
     const [editing, setEditing] = useState(false)
     const [newTitle, setNewTitle] = useState(course.title)
+    // Temp, best approach would to have associated, stored URI.
+    // Field - upload photo (user), upload photo and generate URI, store URI string in database.
     const picturesSrc = ["https://www.drupal.org/files/project-images/bootstrap-stack.png",
         "https://miro.medium.com/max/285/1*QR2SBNwG75LyY5uwqWpN3A.png",
         "https://freeiconshop.com/wp-content/uploads/edd/html-flat.png",
