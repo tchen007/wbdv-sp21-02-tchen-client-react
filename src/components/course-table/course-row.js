@@ -55,7 +55,7 @@ const CourseRow = (
             {/*Icons for row, delete and edit only show when editing is true*/}
             <td className="text-right">
                 {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit fa-lg mr-2 text-primary"/>}
-                {editing && <i onClick={() => saveCourse()} className="fas fa-check fa-lg mr-2 text-success"/>}
+                {editing && <i onClick={saveCourse} className="fas fa-check fa-lg mr-2 text-success"/>}
                 {editing && <i onClick={() => deleteCourse(course._id)} className="fas fa-minus-circle fa-lg mx-2 text-danger"/>}
             </td>
         </tr>

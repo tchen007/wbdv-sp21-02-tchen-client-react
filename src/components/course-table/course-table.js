@@ -5,6 +5,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import CourseRow from "./course-row"
+import "./course-table.css"
 
 export default class CourseTable extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ export default class CourseTable extends React.Component {
 
     render() {
         return (
-            <table className="table">
+            <table className="table mx-4">
                 <thead>
                     <tr className="border-3">
                         <th className="wbdv-table-width-title">Title</th>
