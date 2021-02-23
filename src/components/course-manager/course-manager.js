@@ -93,8 +93,8 @@ export default class CourseManager extends React.Component {
                             onChange={(event) => this.newTitle = event.target.value}
                             className="form-control font-italic my-3 col-9" id="courseTitleFld"
                             type="text" placeholder="New Course Title"/>
-                        <button className="btn btn-danger rounded-circle m-3">
-                            <i onClick={() => this.addCourse()} className="fas fa-plus"/>
+                        <button onClick={() => this.addCourse()} className="btn btn-danger rounded-circle m-3">
+                            <i className="fas fa-plus"/>
                         </button>
                     </div>
                 </nav>
@@ -117,8 +117,8 @@ export default class CourseManager extends React.Component {
 
                 {/*Button at Bottom Right*/}
                 <div className="row col-12">
-                    <button className="btn btn-danger rounded-circle wbdv-bottom-right" type="submit">
-                        <span className="fas fa-plus fa-2x"></span>
+                    <button onClick={() => this.addCourse()} className="btn btn-danger rounded-circle wbdv-bottom-right" type="submit">
+                        <i className="fas fa-plus fa-2x"></i>
                     </button>
                 </div>
             </div>

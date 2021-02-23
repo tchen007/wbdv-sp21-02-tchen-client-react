@@ -1,4 +1,6 @@
 // Renders an array of courses as a table - course/row
+// In safari, table is a bit messed up with the mx-4 due to padding
+// Fix: div with col-12 and no mx-4 but makes the table flushed left & right
 
 import React from 'react';
 import {Link} from "react-router-dom";
