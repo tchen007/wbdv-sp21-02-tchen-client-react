@@ -1,4 +1,7 @@
 // History is a unique react router object
+// map to /courses/:layout/edit/:courseId
+// Displays the modules, lessons, and topics for a course whose ID is courseId
+
 
 const CourseEditor = ({history}) => {
     return (
