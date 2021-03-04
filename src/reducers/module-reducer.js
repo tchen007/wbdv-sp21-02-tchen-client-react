@@ -8,8 +8,16 @@ const moduleReducer = (state= initialState, action) => {
             return {
                 ...state,
                 modules: action.modules
-        }
-        // case "CREATE_MODULE": return state
+            }
+        case "CREATE_MODULE":
+            const newState = {
+                // ...state,
+                modules: [
+                    ...state.modules,
+                    action.newModule
+                ]
+            }
+            return newState
         // case "UPDATE_MODULE": return state
         // case "DELETE_MODULE": return state
         default:

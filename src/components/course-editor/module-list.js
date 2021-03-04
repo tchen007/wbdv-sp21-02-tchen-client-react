@@ -32,7 +32,7 @@ const ModuleList = (
                     )
                 }
             </ul>
-            <i onClick={() => createModule(courseId)} className="fas fa-plus fa-2x"/>
+            <i onClick={() => createModule(courseId, courseModules.length)} className="fas fa-plus fa-2x"/>
         </div>)
 }
 
@@ -47,20 +47,21 @@ const stateToProps = (state) => {
 const dispatchToProps = (dispatch) => {
     return {
         findModulesForCourse: (courseId) => {
-            // alert(courseId);
             moduleService.findModulesForCourse(courseId)
                 .then(modulesFromServer => dispatch({
                     type: "FIND_MODULES_FOR_COURSE",
                     modules: modulesFromServer
                 }))
         },
-        createModule: (courseId) => {
-            moduleService.createModule(courseId, {title: `Module: ${ModuleList.length}`})
-                // .then(theActualModule => dispatch({
-                //     type: "CREATE_MODULE",
-                //     module: theActualModule
-                // }))
-            console.log('createModule Button has been clicked', {courseId})
+        createModule: (courseId, courseModulesLen) => {
+            moduleService.createModule(courseId, {title: `Module: ${courseModulesLen}`})
+                .then((newModule) =>
+                {console.log(newModule)
+                    dispatch({
+                    type: "CREATE_MODULE",
+                    newModule: newModule
+                })}
+                )
         }
     }
 }
