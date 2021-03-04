@@ -9,7 +9,7 @@ import {POST, PUT, DELETE, HEADER, MODULES_URL, COURSES_URL} from './services-co
 
 // creates a new module instance for the course whose ID is courseId
 export const createModule = (courseId, module) => {
-    fetch(`${COURSES_URL}/${courseId}/modules`, {
+    return fetch(`${COURSES_URL}/${courseId}/modules`, {
         method: "POST",
         body: JSON.stringify(module),
         headers: HEADER
@@ -20,8 +20,7 @@ export const createModule = (courseId, module) => {
 
 // retrieves all modules for course whose ID is courseId
 export const findModulesForCourse = (courseId) => {
-    console.log('API call for findModulesFromCourse')
-    fetch(`${COURSES_URL}/${courseId}/modules`)
+    return fetch(`${COURSES_URL}/${courseId}/modules`)
         .then(response => response.json())
         // .then(res => console.log(res))
         .catch(error => console.log(error))
@@ -34,19 +33,19 @@ export const findModulesForCourse = (courseId) => {
 
 // updates one module whose ID is moduleId
 export const updateModule = (moduleId, module) => {
-    fetch(`${MODULES_URL}/${moduleId}`, {
+    return fetch(`${MODULES_URL}/${moduleId}`, {
         method: PUT,
         body: JSON.stringify(module),
         headers: HEADER
     })
         .then(response => response.json())
         // Does it have a response?/ do we use it?
-        // .catch(error => console.log(error))
+        .catch(error => console.log(error))
 }
 
 // removes module whose ID is moduleId
 export const deleteModule = (moduleId) => {
-    fetch(`${MODULES_URL}/${moduleId}`, {
+    return fetch(`${MODULES_URL}/${moduleId}`, {
         method: DELETE
     })
         .then(response => response.json())
