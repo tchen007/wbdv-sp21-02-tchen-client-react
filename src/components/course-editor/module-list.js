@@ -3,3 +3,4 @@
 // Clicking on title => selects module and highlights module
 // Bottom of module list button allows adding new modules
 // Rendered using an ItemEditor component
+

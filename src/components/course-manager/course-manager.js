@@ -83,9 +83,8 @@ export default class CourseManager extends React.Component {
                         </button>
                         <div className="navbar-brand font-weight-bold d-none d-lg-block my-3 ml-5" >Course Manager</div>
                         <div className="dropdown-menu" aria-labelledby="navbarMenuDropdown">
-                            <Link to="/editor" className="dropdown-item">Editor</Link>
-                            <a className="dropdown-item" href="../login/login.template.client.html">Login</a>
-                            <a className="dropdown-item" href="../profile/profile.template.client.html">Profile</a>
+                            <Link to="/courses/table" className="dropdown-item">Courses: Table View</Link>
+                            <Link to="/courses/grid" className="dropdown-item">Courses: Grid View</Link>
                         </div>
                     </div>
                     <div className="col-lg-10 col-sm-11 my-3 ml-3 custom-control-inline">
