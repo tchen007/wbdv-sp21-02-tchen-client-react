@@ -14,16 +14,20 @@ export default class CourseService {
             body: JSON.stringify(course)
         })
             .then(response => response.json())
+            .catch(error => console.log(error))
+
     }
 
     findAllCourses() {
         return fetch(this._url)
             .then(response => response.json())
+            .catch(error => console.log(error))
     }
 
     findCourseById(id) {
         return fetch(`${this._url}/${id}`)
             .then(response => response.json())
+            .catch(error => console.log(error))
     }
 
     updateCourse(id, course) {
@@ -32,11 +36,13 @@ export default class CourseService {
             headers: this._header,
             body: JSON.stringify(course)
         })
+            .catch(error => console.log(error))
     }
 
     deleteCourse(id) {
         return fetch(`${this._url}/${id}`, {
             method: "DELETE"
         })
+            .catch(error => console.log(error))
     }
 }
