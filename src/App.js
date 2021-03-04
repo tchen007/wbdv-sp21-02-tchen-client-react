@@ -8,8 +8,9 @@ function App() {
     return (
         <BrowserRouter>
             <Route path={"/courses"} component={CourseManager}/>
-            <Route path={"/"}exact={true} component={CourseManager}/>
-            <Route path="/editor" exact={true} render={(props) => <CourseEditor {...props}/>}/>
+            <Route path={"/"} exact={true} component={CourseManager}/>
+            <Route path={"/editor/:courseId"} exact={true}
+                   render={(props) => <CourseEditor {...props}/>}/>
         </BrowserRouter>
     );
 }

@@ -20,8 +20,10 @@ export const createModule = (courseId, module) => {
 
 // retrieves all modules for course whose ID is courseId
 export const findModulesForCourse = (courseId) => {
+    console.log('API call for findModulesFromCourse')
     fetch(`${COURSES_URL}/${courseId}/modules`)
         .then(response => response.json())
+        // .then(res => console.log(res))
         .catch(error => console.log(error))
 }
 
@@ -39,7 +41,7 @@ export const updateModule = (moduleId, module) => {
     })
         .then(response => response.json())
         // Does it have a response?/ do we use it?
-        .catch(error => console.log(error))
+        // .catch(error => console.log(error))
 }
 
 // removes module whose ID is moduleId

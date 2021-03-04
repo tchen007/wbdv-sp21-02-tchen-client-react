@@ -7,8 +7,11 @@ import React from "react";
 import moduleReducer from "../../reducers/module-reducer";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
+import ModuleList from "./module-list";
 
-const reducer = combineReducers(moduleReducer)
+const reducer = combineReducers({
+    moduleReducer
+})
 
 const store = createStore(reducer)
 
@@ -26,6 +29,7 @@ const CourseEditor = ({history}) => {
                     <div className="navbar-brand font-weight-bold text-truncate my-3 ml-3 ml-lg-0 ml-xl-0">Course Name</div>
                 </nav>
             </div>
+            <ModuleList/>
         </Provider>
         // <div>
         //     <nav className="navbar-dark bg-dark row pt-3">

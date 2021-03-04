@@ -66,7 +66,6 @@ export default class CourseManager extends React.Component {
                             (c) => c._id === updatedCourse._id ? updatedCourse : c)
                     }
                 ));
-                console.log("Where the log at?");
                 console.log(this.state);
             });
     };
@@ -79,7 +78,7 @@ export default class CourseManager extends React.Component {
                     <div className="col-lg-3 col-auto m-3 custom-control-inline">
                         <button className="navbar-toggler my-3" type="button" data-toggle="dropdown" id="navbarMenuDropdown"
                                 aria-expanded="false" aria-haspopup="true">
-                            <i className="navbar-toggler-icon"></i>
+                            <i className="navbar-toggler-icon"/>
                         </button>
                         <div className="navbar-brand font-weight-bold d-none d-lg-block my-3 ml-5" >Course Manager</div>
                         <div className="dropdown-menu" aria-labelledby="navbarMenuDropdown">
@@ -117,7 +116,7 @@ export default class CourseManager extends React.Component {
                 {/*Button at Bottom Right*/}
                 <div className="row col-12">
                     <button onClick={() => this.addCourse()} className="btn btn-danger rounded-circle wbdv-bottom-right" type="submit">
-                        <i className="fas fa-plus fa-2x"></i>
+                        <i className="fas fa-plus fa-2x"/>
                     </button>
                 </div>
             </div>
