@@ -110,7 +110,6 @@ export default class CourseManager extends React.Component {
                             courses={this.state.courses}
                         />
                     </Route>
-                    <Redirect from="*" to="/"/>
                 </Switch>
 
                 {/*Button at Bottom Right*/}

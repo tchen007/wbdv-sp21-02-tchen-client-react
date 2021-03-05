@@ -14,8 +14,11 @@ const CourseCard = (
     ) => {
     const day = new Date();
     const options = {year: 'numeric', month: 'numeric', day: 'numeric' };
+    const editorPath = "/courses/grid/edit/".concat(course._id)
+
     const [editing, setEditing] = useState(false)
     const [newTitle, setNewTitle] = useState(course.title)
+
     // Temp, best approach would to have associated, stored URI.
     // Field - upload photo (user), upload photo and generate URI, store URI string in database.
     const picturesSrc = ["https://www.drupal.org/files/project-images/bootstrap-stack.png",
@@ -44,7 +47,7 @@ const CourseCard = (
                 <img src={picturesSrc[index % 7]} className="card-img-top" alt="..."/>
                 <div className="card-body d-flex flex-column">
                     { !editing &&
-                        <Link to="/editor">
+                        <Link to={editorPath}>
                             <h5 className="card-title text-truncate text-dark">{course.title}</h5>
                         </Link>
                     }
@@ -54,7 +57,7 @@ const CourseCard = (
                            className="form-control"/>
                     }
                     <p className="card-text">Some description about class.</p>
-                    <Link to="/editor" className="btn btn-primary text-truncate mt-auto mb-4">{course.title}</Link>
+                    <Link to={editorPath} className="btn btn-primary text-truncate mt-auto mb-4">{course.title}</Link>
                     <div className="text-right mt-auto">
                         {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit fa-lg mr-2 text-primary"/>}
                         {editing && <i  onClick={saveCourse} className="fas fa-check fa-lg mr-2 text-success"/>}

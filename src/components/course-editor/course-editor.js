@@ -2,7 +2,7 @@
 // map to /courses/:layout/edit/:courseId
 // Displays the modules, lessons, and topics for a course whose ID is courseId
 
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import React from "react";
 import moduleReducer from "../../reducers/module-reducer";
 import {combineReducers, createStore} from "redux";
@@ -16,6 +16,7 @@ const reducer = combineReducers({
 const store = createStore(reducer)
 
 const CourseEditor = ({history}) => {
+    const {courseId} = useParams()
     return (
         <Provider store={store}>
             {/*Navigation Bar*/}
@@ -25,11 +26,20 @@ const CourseEditor = ({history}) => {
                             onClick={() => history.goBack()}>
                         <i className="fas fa-arrow-left"/>
                     </button>
-                    <div className="navbar-brand font-weight-bold d-none d-lg-block my-3 ml-3" >Course Editor:</div>
-                    <div className="navbar-brand font-weight-bold text-truncate my-3 ml-3 ml-lg-0 ml-xl-0">Course Name</div>
+                    <div className="navbar-brand font-weight-bold my-3 ml-3" >Course Editor:</div>
+                    {/*<div className="navbar-brand font-weight-bold text-truncate my-3 ml-3 ml-lg-0 ml-xl-0">Course Name</div>*/}
                 </nav>
             </div>
-            <ModuleList/>
+            <div className="col-12 mx-2 mt-3 custom-control-inline">
+                <section className="ml-5 col-3">
+                    <ModuleList/>
+                </section>
+                <section className="ml-5 col-8">
+                    <ModuleList/>
+                    <h1 className="float-right">RAWR</h1>
+                </section>
+            </div>
+
         </Provider>
         // <div>
         //     <nav className="navbar-dark bg-dark row pt-3">

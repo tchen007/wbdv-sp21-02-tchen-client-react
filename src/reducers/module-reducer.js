@@ -8,20 +8,24 @@ const moduleReducer = (state= initialState, action) => {
             return {
                 ...state,
                 modules: action.modules
-            }
+            };
         case "CREATE_MODULE":
-            const newState = {
-                // ...state,
+            return {
                 modules: [
                     ...state.modules,
                     action.newModule
                 ]
-            }
-            return newState
+            };
         // case "UPDATE_MODULE": return state
-        // case "DELETE_MODULE": return state
+        case "DELETE_MODULE":
+            const statePostDel = {
+                modules: state.modules.filter(module =>
+                    module._id !== action.moduleToDelId
+                )
+            };
+            return statePostDel;
         default:
-            return state
+            return state;
     }
 }
 

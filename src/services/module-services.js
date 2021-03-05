@@ -20,6 +20,7 @@ export const createModule = (courseId, module) => {
 
 // retrieves all modules for course whose ID is courseId
 export const findModulesForCourse = (courseId) => {
+    console.log('API call for findModulesFromCourse')
     return fetch(`${COURSES_URL}/${courseId}/modules`)
         .then(response => response.json())
         // .then(res => console.log(res))

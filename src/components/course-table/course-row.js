@@ -14,6 +14,7 @@ const CourseRow = (
 
     const day = new Date();
     const options = {year: 'numeric', month: 'numeric', day: 'numeric' };
+    const editorPath = "/courses/table/edit/".concat(course._id)
 
     // useState() returns state and function that updates it
     const [editing, setEditing] = useState(false)
@@ -35,7 +36,7 @@ const CourseRow = (
             {/*Title column*/}
             <td>
                 { !editing &&
-                    <Link to="/editor">
+                    <Link to={editorPath}>
                         <i className="fas fa-file fa-lg fa-fw mr-1 text-primary"/>
                         <span className="text-dark">{title}</span>
                     </Link>
