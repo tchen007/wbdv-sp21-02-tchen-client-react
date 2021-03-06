@@ -16,9 +16,31 @@ const moduleReducer = (state= initialState, action) => {
                     action.newModule
                 ]
             };
-        // case "UPDATE_MODULE": return state
+        case "UPDATE_MODULE":
+            return {
+                ...state,
+                modules: state.modules.map(module => {
+                    if(module._id === action.module._id) {
+                        return action.module
+                    } else {
+                        return module
+                    }
+                })
+            }
+        // case "DELETE_MODULE":
+        //     return {
+        //         ...state,
+        //         modules: state.modules.filter(module => {
+        //             if(module._id !== action.moduleToDelId) {
+        //                 return true
+        //             } else {
+        //                 return false
+        //             }
+        //         })
+        //     }
         case "DELETE_MODULE":
             const statePostDel = {
+                ...state,
                 modules: state.modules.filter(module =>
                     module._id !== action.moduleToDelId
                 )

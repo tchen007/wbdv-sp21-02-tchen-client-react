@@ -30,9 +30,10 @@ const ModuleList = (
             <ul className="list-group col-12">
                 {
                     courseModules.map(module =>
-                        <li className="list-group-item">
+                        <li className="list-group-item" key={module._id}>
                             <EditableItem
-                                path={`courses/${layout}/editor/${courseId}`}
+                                /*needs fixing - multiple clicks appends to it delete -1 of url*/
+                                path={`${courseId}/module`}
                                 updateItem={updateModule}
                                 deleteItem={deleteModule}
                                 active={true}
@@ -42,7 +43,7 @@ const ModuleList = (
                 }
             </ul>
             <i onClick={() => createModule(courseId, courseModules.length)}
-               className="fas fa-plus fa-2x float-right m-2"/>
+               className="fas fa-plus fa-2x float-right mx-5 mt-3 pb-5"/>
         </div>)
 }
 
@@ -78,6 +79,15 @@ const dispatchToProps = (dispatch) => {
                     dispatch({
                         type: "DELETE_MODULE",
                         moduleToDelId: moduleToDel._id
+                    })
+                )
+        },
+        updateModule: (module) => {
+            moduleService.updateModule(module._id, module)
+                .then(status =>
+                    dispatch({
+                        type: "UPDATE_MODULE",
+                        module
                     })
                 )
         }
