@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import {Link} from "react-router-dom";
+import {NavLink, Link, useLocation, useRouteMatch} from "react-router-dom";
+import {act} from "@testing-library/react";
 
 const EditableItem = (
     {
@@ -13,12 +14,16 @@ const EditableItem = (
     const [editing, setEditing] = useState(false)
     // CachedItem is to save the current item to change title while editing
     const [cachedItem, setCachedItem] = useState(item)
+    const [selected, setSelected] = useState(active)
+    // const location = useLocation()
+    // const location = useRouteMatch(path)
 
     return (
         <>
             { !editing &&
             <>
-                <Link className={`nav-link d-inline-block text-truncate col-8 ${active ? 'active' : ''}`} to={path}>
+                <Link className={`nav-link d-inline-block text-truncate col-8 ${active ? 'active' : ''}`}
+                      to={path}>
                     {item.title} {JSON.stringify(active)} {item._id}
                 </Link>
                 <span className="col-3 float-right text-right pt-2">

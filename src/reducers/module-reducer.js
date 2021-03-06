@@ -26,18 +26,7 @@ const moduleReducer = (state= initialState, action) => {
                         return module
                     }
                 })
-            }
-        // case "DELETE_MODULE":
-        //     return {
-        //         ...state,
-        //         modules: state.modules.filter(module => {
-        //             if(module._id !== action.moduleToDelId) {
-        //                 return true
-        //             } else {
-        //                 return false
-        //             }
-        //         })
-        //     }
+            };
         case "DELETE_MODULE":
             const statePostDel = {
                 ...state,

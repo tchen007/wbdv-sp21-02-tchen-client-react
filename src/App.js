@@ -9,9 +9,13 @@ function App() {
         <BrowserRouter>
             <Route path={["/", "/courses", "/courses/:layout"]} exact={true}
                    component={CourseManager}/>
-            <Route path={"/courses/:layout/edit/:courseId"}
+            <Route path={["/courses/:layout/edit/:courseId",
+                "/courses/:layout/edit/:courseId/modules/:moduleId",
+                "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"
+            ]}
+                   exact={true}
                    render={(props) => <CourseEditor {...props}/>}/>
-
         </BrowserRouter>
     );
 }

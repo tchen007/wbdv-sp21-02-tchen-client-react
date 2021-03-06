@@ -15,7 +15,7 @@ const reducer = combineReducers({
 
 const store = createStore(reducer)
 
-const CourseEditor = ({history}) => {
+const CourseEditor = (history) => {
     const {courseId} = useParams()
     return (
         <Provider store={store}>
@@ -23,10 +23,10 @@ const CourseEditor = ({history}) => {
             <div className="row">
                 <nav className="bg-primary navbar-dark custom-control-inline col-12 p-3">
                     <button className="btn btn-outline-light rounded-circle my-3 ml-3 mr-5"
-                            onClick={() => history.goBack()}>
+                        onClick={() => history.goBack()}>
                         <i className="fas fa-arrow-left"/>
                     </button>
-                    <div className="navbar-brand font-weight-bold my-3 ml-3" >Course Editor:</div>
+                    <div className="navbar-brand font-weight-bold my-3 ml-3" >Course Editor</div>
                     {/*<div className="navbar-brand font-weight-bold text-truncate my-3 ml-3 ml-lg-0 ml-xl-0">Course Name</div>*/}
                 </nav>
             </div>

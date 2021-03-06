@@ -4,6 +4,7 @@ import CourseTable from "../course-table/course-table";
 import {Switch, Route, Redirect, Link} from "react-router-dom";
 import './course-manager.css';
 import CourseGrid from "../course-grid/course-grid";
+import CourseEditor from "../course-editor/course-editor";
 
 export default class CourseManager extends React.Component {
     constructor(props) {
@@ -97,19 +98,19 @@ export default class CourseManager extends React.Component {
                     </div>
                 </nav>
                 <Switch>
-                    <Route path={["/", "/courses", "/courses/table"]} exact={true}>
-                        <CourseTable
-                            updateCourse={this.updateCourse}
-                            deleteCourse={this.deleteCourse}
-                            courses={this.state.courses}/>
-                    </Route>
-                    <Route path="/courses/grid" exact={true}>
-                        <CourseGrid
-                            updateCourse={this.updateCourse}
-                            deleteCourse={this.deleteCourse}
-                            courses={this.state.courses}
-                        />
-                    </Route>
+                <Route path={["/", "/courses", "/courses/table"]} exact={true}>
+                    <CourseTable
+                        updateCourse={this.updateCourse}
+                        deleteCourse={this.deleteCourse}
+                        courses={this.state.courses}/>
+                </Route>
+                <Route path="/courses/grid" exact={true}>
+                    <CourseGrid
+                        updateCourse={this.updateCourse}
+                        deleteCourse={this.deleteCourse}
+                        courses={this.state.courses}
+                    />
+                </Route>
                 </Switch>
 
                 {/*Button at Bottom Right*/}

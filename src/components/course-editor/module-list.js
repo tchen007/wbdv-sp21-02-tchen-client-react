@@ -4,7 +4,7 @@
 // Bottom of module list button allows adding new modules
 // Rendered using an ItemEditor component
 
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import {useParams} from "react-router-dom";
 import moduleService from "../../services/module-services";
@@ -27,13 +27,12 @@ const ModuleList = (
     return (
         <div>
             <h2>Modules {courseModules.length} {courseId}</h2>
-            <ul className="list-group col-12">
+            <ul className="list-group col-12 ">
                 {
                     courseModules.map(module =>
                         <li className="list-group-item" key={module._id}>
                             <EditableItem
-                                /*needs fixing - multiple clicks appends to it delete -1 of url*/
-                                path={`${courseId}/module`}
+                                path={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
                                 updateItem={updateModule}
                                 deleteItem={deleteModule}
                                 active={true}
