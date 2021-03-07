@@ -27,7 +27,8 @@ export default class CourseService {
     findCourseById(id) {
         return fetch(`${this._url}/${id}`)
             .then(response => response.json())
-            .catch(error => console.log(error))
+            // .then(res => console.log(res))
+            // .catch(error => console.log(error))
     }
 
     updateCourse(id, course) {

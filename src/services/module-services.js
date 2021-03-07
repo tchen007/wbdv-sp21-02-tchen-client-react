@@ -22,7 +22,6 @@ export const createModule = (courseId, module) => {
 export const findModulesForCourse = (courseId) => {
     return fetch(`${COURSES_URL}/${courseId}/modules`)
         .then(response => response.json())
-        // .then(res => console.log(res))
         .catch(error => console.log(error))
 }
 

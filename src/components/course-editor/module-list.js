@@ -17,26 +17,39 @@ const ModuleList = (
         findModulesForCourse,
         createModule,
         deleteModule,
-        updateModule
+        updateModule,
     }) => {
-    const {layout, courseId} = useParams();
+    const {layout, courseId , moduleId} = useParams();
     // const courseService = new CourseService();
+    // const [selected, setSelected] = useState(false)
+    // const [childEditing, setEditingFromChild] = useState([])
+
+    // const childEditing = []
+
+    // const handleChange = (moduleId) => {
+    //     childEditing.push(moduleId)
+    // }
 
     useEffect(() => {
         findModulesForCourse(courseId)}, [])
     return (
         <div>
             <h2>Modules {courseModules.length} {courseId}</h2>
-            <ul className="list-group col-12 ">
+            <ul className="nav list-group col-12">
+                {/*${(module._id === moduleId || childEditing.includes(module._id.toString())) ? "active": ""} `}*/}
                 {
                     courseModules.map(module =>
-                        <li className="list-group-item" key={module._id}>
+                        <li className={`list-group-item col-12
+                            ${module._id === moduleId ? "active": ""} `}
+                    key={module._id}>
                             <EditableItem
                                 path={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
                                 updateItem={updateModule}
                                 deleteItem={deleteModule}
-                                active={true}
+                                active={module._id === moduleId}
                                 item={module}/>
+                                {/*setEditForParent={handleChange}*/}
+                                {/*childEditing={childEditing}*/}
                         </li>
                     )
                 }
@@ -62,9 +75,10 @@ const dispatchToProps = (dispatch) => {
                     type: "FIND_MODULES_FOR_COURSE",
                     modules: modulesFromServer
                 }))
+                .then(console.log("dispatch"))
         },
         createModule: (courseId, courseModulesLen) => {
-            moduleService.createModule(courseId, {title: `Module: ${courseModulesLen}`})
+            moduleService.createModule(courseId, {title: `New Module: ${courseModulesLen + 1}`})
                 .then((newModule) =>
                     dispatch({
                         type: "CREATE_MODULE",

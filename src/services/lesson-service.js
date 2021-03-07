@@ -1,4 +1,4 @@
-import {POST, PUT, DELETE, HEADER, LESSONS_URL, MODULES_URL, COURSES_URL} from './services-constants'
+import {POST, PUT, DELETE, HEADER, LESSONS_URL, MODULES_URL} from './services-constants'
 
 // const MODULES_URL = 'https://wbdv-generic-server.herokuapp.com/api/tchen007/modules' // /MODULE_ID/lessons
 // const LESSONS_URL = 'https://wbdv-generic-server.herokuapp.com/api/tchen007/lessons' // /LESSON_ID
