@@ -50,13 +50,13 @@ const EditableItem = (
                     }}
                        className={`fas fa-check fa-lg mr-3 text-white`}/>
                     <i onClick={() => {
-                        if (!active) {
+                        // if (!active) {
                             setEditing(false)
                             deleteItem(cachedItem)
-                        }
-                        else{
+                        // }
+                        // else{
                             alert(`Invalid delete: ${item.title}`)
-                        }
+                        // }
                     }}
                        className={`fas fa-minus-circle fa-lg text-white`}/>
                 </span>
