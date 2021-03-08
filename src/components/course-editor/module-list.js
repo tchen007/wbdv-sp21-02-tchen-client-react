@@ -20,15 +20,7 @@ const ModuleList = (
         updateModule,
     }) => {
     const {layout, courseId , moduleId} = useParams();
-    // const courseService = new CourseService();
-    // const [selected, setSelected] = useState(false)
-    // const [childEditing, setEditingFromChild] = useState([])
 
-    // const childEditing = []
-
-    // const handleChange = (moduleId) => {
-    //     childEditing.push(moduleId)
-    // }
 
     useEffect(() => {
         findModulesForCourse(courseId)}, [])
@@ -81,7 +73,6 @@ const dispatchToProps = (dispatch) => {
                     type: "FIND_MODULES_FOR_COURSE",
                     modules: modulesFromServer
                 }))
-                .then(console.log("dispatch"))
         },
         createModule: (courseId, courseModulesLen) => {
             moduleService.createModule(courseId, {title: `New Module: ${courseModulesLen + 1}`})

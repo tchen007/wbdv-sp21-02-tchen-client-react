@@ -15,11 +15,8 @@ const TopicPills = (
     const {layout, courseId, moduleId, lessonId, topicId} = useParams();
 
     useEffect(() => {
-        // if(lessonId !== "undefined" && typeof lessonId !== "undefined") {
-            console.log(findTopicsForLesson(lessonId))
-            console.log(layout, courseId, moduleId, lessonId, topicId)
-        // }
-    }, [moduleId, lessonId])
+            findTopicsForLesson(lessonId)
+    }, [ lessonId])
 
     return(
         <div className="mt-5">
@@ -71,7 +68,6 @@ const dispatchToProps = (dispatch) => {
                 }))
         },
         createTopic: (lessonId, lessonTopicsLen) => {
-            console.log(lessonId)
             if (lessonId !== "undefined" && typeof lessonId !== "undefined") {
                 topicService.createTopic(lessonId, {title: `New Topic: ${lessonTopicsLen}` })
                     .then((newTopic) =>

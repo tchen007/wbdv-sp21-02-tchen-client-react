@@ -24,13 +24,6 @@ export const findTopicsForLesson = (lessonId) => {
 
 // retrieves one Topic whose ID is topicId (optional)
 // export const findTopic = () => {
-//     return fetch(`${TOPICS_URL}/${}`, {
-//         method: PUT,
-//         body: JSON.stringify(lesson),
-//         headers: HEADER
-//     })
-//         .then(response => response.json())
-//         .catch(error => console.log(error))
 // }
 
 // updates one Topic whose ID is TopicId

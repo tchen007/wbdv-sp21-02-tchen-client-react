@@ -16,10 +16,7 @@ const LessonTabs = (
     const {layout, courseId, moduleId, lessonId} = useParams();
 
     useEffect(() => {
-        // if(moduleId !== "undefined" && typeof moduleId !== "undefined") {
             findLessonsForModule(moduleId)
-            console.log(layout, courseId, moduleId, lessonId)
-        // }
     }, [moduleId])
 
     return (
@@ -72,7 +69,6 @@ const dispatchToProps = (dispatch) => {
                     type: "FIND_LESSONS_FOR_MODULE",
                     lessons: lessonsFromServer
                 }))
-                .then(console.log("lesson dispatch"))
         },
         createLesson: (moduleId, moduleLessonsLen) => {
             lessonService.createLesson(moduleId, {title: `New Lesson: ${moduleLessonsLen}` })

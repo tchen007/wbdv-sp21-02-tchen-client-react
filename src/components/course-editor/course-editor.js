@@ -24,13 +24,11 @@ const reducer = combineReducers({
 const store = createStore(reducer)
 
 const CourseEditor = (
-        history
     ) => {
     const [courseTitle, setTitle] = useState("")
     const {layout, courseId} = useParams()
     useEffect(() => {
         const cs = new CourseService()
-        // setTitle(JSON.stringify(cs.findCourseById(courseId).title))
         cs.findCourseById(courseId)
             .then((response) => {
                 setTitle(response.title)
@@ -47,7 +45,6 @@ const CourseEditor = (
                         <i className="fas fa-arrow-left"/>
                     </Link>
                     <div className="navbar-brand font-weight-bold my-3 ml-3" >{`${courseTitle}`}</div>
-                    {/*<div className="navbar-brand font-weight-bold text-truncate my-3 ml-3 ml-lg-0 ml-xl-0">Course Name</div>*/}
                 </nav>
             </div>
             <div className="col-12 mx-2 mt-3 custom-control-inline">

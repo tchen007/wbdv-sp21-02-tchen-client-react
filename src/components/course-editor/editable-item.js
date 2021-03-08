@@ -3,21 +3,14 @@ import {Link} from "react-router-dom";
 
 const EditableItem = (
     {
-        // setEditForParent,
-        // childEditing,
         path,
         deleteItem,
         updateItem,
         item,
         active
     }) => {
-    // useState() returns state and function that updates it
     const [editing, setEditing] = useState(false)
-    // CachedItem is to save the current item to change title while editing
     const [cachedItem, setCachedItem] = useState(item)
-    // const [selected, setSelected] = useState(active)
-    // const location = useLocation()
-    // const location = useRouteMatch(path)
 
     return (
         <>
