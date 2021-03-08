@@ -6,15 +6,19 @@ import {Link, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import moduleReducer from "../../reducers/module-reducer";
 import lessonReducer from "../../reducers/lesson-reducer";
+import topicReducer from "../../reducers/topic-reducer";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
-import ModuleList from "./module-list";
 import CourseService from "../../services/course-service";
+import ModuleList from "./module-list";
 import LessonTabs from "./lesson-tabs";
+import TopicPills from "./topic-pills";
+
 
 const reducer = combineReducers({
-    moduleReducer: moduleReducer,
-    lessonReducer: lessonReducer
+    moduleReducer,
+    lessonReducer,
+    topicReducer
 })
 
 const store = createStore(reducer)
@@ -31,7 +35,6 @@ const CourseEditor = (
             .then((response) => {
                 setTitle(response.title)
             })
-
     })
 
     return (
@@ -39,21 +42,21 @@ const CourseEditor = (
             {/*Navigation Bar*/}
             <div className="row">
                 <nav className="bg-primary navbar-dark custom-control-inline col-12 p-3">
-                    <button className="btn btn-outline-light rounded-circle my-3 ml-3 mr-5"
-                        onClick={() => history.goBack()}>
+                    <Link className="btn btn-outline-light rounded-circle my-3 ml-3 mr-5"
+                        to={`/courses/${layout}`}>
                         <i className="fas fa-arrow-left"/>
-                    </button>
+                    </Link>
                     <div className="navbar-brand font-weight-bold my-3 ml-3" >{`${courseTitle}`}</div>
                     {/*<div className="navbar-brand font-weight-bold text-truncate my-3 ml-3 ml-lg-0 ml-xl-0">Course Name</div>*/}
                 </nav>
             </div>
             <div className="col-12 mx-2 mt-3 custom-control-inline">
-                <section className="ml-5 col-3">
+                <section className="ml-2 col-3">
                     <ModuleList/>
                 </section>
-                <section className="ml-5 col-8">
+                <section className="ml-2 col-9">
                     <LessonTabs/>
-                    <h1 className="float-right">RAWR</h1>
+                    <TopicPills/>
                 </section>
             </div>
 

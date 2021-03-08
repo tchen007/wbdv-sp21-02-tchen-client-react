@@ -19,29 +19,40 @@ const LessonTabs = (
         // if(moduleId !== "undefined" && typeof moduleId !== "undefined") {
             findLessonsForModule(moduleId)
             console.log(layout, courseId, moduleId, lessonId)
-            // console.log(moduleLessons)
         // }
     }, [moduleId])
+
     return (
-        <div>
-            <h2>Lessons {moduleLessons.length} {moduleId}</h2>
-            <ul className="nav nav-tabs col-12 nav-justified">
-                {
-                    moduleLessons.map(lesson =>
-                        <li className={`nav-item ${lesson._id === lessonId ? "active bg-primary": ""}`} key={lesson._id}>
-                            <EditableItem
-                                path={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
-                                updateItem={updateLesson}
-                                deleteItem={deleteLesson}
-                                active={lesson._id === lessonId}
-                                item={lesson}/>
-                        </li>
-                    )
-                }
-                <i onClick={() => createLesson(moduleId, moduleLessons.length)}
+        <>
+            { moduleLessons.length > 0 &&
+                <ul className="nav nav-tabs col-12 nav-justified">
+                    {
+                        moduleLessons.map(lesson =>
+                            <li className={`nav-link border rounded 
+                                ${lesson._id === lessonId ? "active bg-primary" : ""}`}
+                                key={lesson._id}>
+                                <EditableItem
+                                    path={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
+                                    updateItem={updateLesson}
+                                    deleteItem={deleteLesson}
+                                    active={lesson._id === lessonId}
+                                    item={lesson}/>
+                            </li>
+                        )
+                    }
+                    <i onClick={() => createLesson(moduleId, moduleLessons.length)}
                        className="fas fa-plus fa-2x mx-5 mt-2 pb-2"/>
-            </ul>
-        </div>
+                </ul>
+            }
+            { typeof moduleId !== "undefined" && moduleLessons.length === 0 &&
+            <div className="pt-0">
+                <h5 className="nav nav-tabs text-black-50 font-italic d-inline-block pt-4">No lessons to display</h5>
+
+                <i onClick={() => createLesson(moduleId, moduleLessons.length)}
+                   className="fas fa-plus fa-2x mx-5 mt-2 pb-2 pr-3 float-right d-inline-block"/>
+            </div>
+            }
+        </>
 
     )
 }
