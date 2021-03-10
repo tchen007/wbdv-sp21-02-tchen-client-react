@@ -16,7 +16,7 @@ const TopicPills = (
 
     useEffect(() => {
             findTopicsForLesson(lessonId)
-    }, [ lessonId])
+    }, [lessonId])
 
     return(
         <div className="mt-5">
@@ -24,26 +24,26 @@ const TopicPills = (
                 <ul className="nav nav-pills border border-white col-12 nav-justified">
                     {
                         lessonTopics.map(topic =>
-                            <li className={`nav-item rounded mr-2 ${topic._id === topicId ? "active bg-primary" : ""}`}
-                                key={topic._id}>
                                 <EditableItem
+                                    key={topic._id}
                                     path={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                                     updateItem={updateTopic}
                                     deleteItem={deleteTopic}
                                     active={topic._id === topicId}
-                                    item={topic}/>
-                            </li>
+                                    item={topic}
+                                    type={"pill"}
+                                />
                         )
                     }
                     <i onClick={() => createTopic(lessonId, lessonTopics.length)}
-                       className="fas fa-plus fa-2x mx-5 pb-2 bo"/>
+                       className="fas fa-plus fa-2x mx-5 pb-2 mt-2"/>
                 </ul>
             }
             { typeof lessonId !== "undefined" && lessonTopics.length === 0 &&
             <>
                 <h5 className="text-black-50 font-italic d-inline">No topics to display</h5>
                 <i onClick={() => createTopic(lessonId, lessonTopics.length)}
-                className="fas fa-plus fa-2x mx-3 mr-5 pr-3 pb-2 float-right"/>
+                className="fas fa-plus fa-2x mx-3 mr-5 pr-3 pb-2 mt-2 float-right"/>
             </>
             }
         </div>

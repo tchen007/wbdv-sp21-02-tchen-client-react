@@ -22,23 +22,22 @@ const LessonTabs = (
     return (
         <>
             { moduleLessons.length > 0 &&
-                <ul className="nav nav-tabs col-12 nav-justified">
+                <ul className="nav nav-tabs col-12 nav-justified custom-control-inline">
                     {
                         moduleLessons.map(lesson =>
-                            <li className={`nav-link border rounded 
-                                ${lesson._id === lessonId ? "active bg-primary" : ""}`}
-                                key={lesson._id}>
                                 <EditableItem
+                                    key={lesson._id}
                                     path={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                                     updateItem={updateLesson}
                                     deleteItem={deleteLesson}
                                     active={lesson._id === lessonId}
-                                    item={lesson}/>
-                            </li>
+                                    item={lesson}
+                                    type={"tab"}
+                                />
                         )
                     }
                     <i onClick={() => createLesson(moduleId, moduleLessons.length)}
-                       className="fas fa-plus fa-2x mx-5 mt-2 pb-2"/>
+                       className="fas fa-plus fa-2x mx-5 mt-3 pb-2"/>
                 </ul>
             }
             { typeof moduleId !== "undefined" && moduleLessons.length === 0 &&
@@ -46,7 +45,7 @@ const LessonTabs = (
                 <h5 className="nav nav-tabs text-black-50 font-italic d-inline-block pt-4">No lessons to display</h5>
 
                 <i onClick={() => createLesson(moduleId, moduleLessons.length)}
-                   className="fas fa-plus fa-2x mx-5 mt-2 pb-2 pr-3 float-right d-inline-block"/>
+                   className="fas fa-plus fa-2x mx-5 mt-3 pb-2 pr-3 float-right d-inline-block"/>
             </div>
             }
         </>

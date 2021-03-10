@@ -7,16 +7,41 @@ const EditableItem = (
         deleteItem,
         updateItem,
         item,
-        active
+        active,
+        type
     }) => {
+    const types = {
+        LIST: "list",
+        TAB: "tab",
+        PILL: "pill"
+    }
+
+    const listStyle = "list-group-item"
+    const tabStyle = "nav-link rounded"
+    const pillStyle = "nav-item rounded mr-2"
+    let style;
+
+    const setStyle = () => {
+        switch (type) {
+            case types.LIST:
+                style = listStyle
+                break;
+            case types.TAB:
+                style = tabStyle
+                break;
+            case types.PILL:
+                style = pillStyle
+                break;
+        }
+    }
     const [editing, setEditing] = useState(false)
     const [cachedItem, setCachedItem] = useState(item)
-
+    setStyle()
     return (
         <>
             { !editing &&
-                <>
-                    <Link className={`p-2 mt-2 text-left text-truncate d-inline-block col-12 ${active ? "active text-white" : ""}`}
+                <li className={`col-12 ${style} ${active ? "active text-white bg-primary" : ""}`}>
+                    <Link className={`p-2 mt-2 text-left text-truncate custom-control-inline col-11 ${active ? "active text-white" : ""}`}
                           to={path}>
                         {item.title}
                         <i onClick={(event) =>
@@ -24,36 +49,37 @@ const EditableItem = (
                             event.preventDefault()
                             setEditing(true)
                         }}
-                           className="fas text-center fa-edit fa-lg float-right"/>
+                           className="ml-auto mt-1 fas fa-edit fa-lg"/>
                     </Link>
-                </>
+                </li>
             }
             { editing &&
-                <div className={`py-2 col-12 rounded ${active ? "" : "bg-dark"} text-left d-inline-flex`}>
-                    <input className="form-control col-8"
+                <li className={`${style} col-12 px-3 py-3 bg-primary ${active ? "active " : ""} `}>
+                {/*// className={`py-2 col-11 rounded ${active ? "" : "bg-dark"} text-left custom-control-inline`}>*/}
+                    <input className="form-control col-7 custom-control-inline"
                        onChange={(event) => setCachedItem(
                            {...cachedItem, title: event.target.value}
                        )}
                        value={cachedItem.title}>
                     </input>
-                    <span className="col-5 pt-2 d-inline-flex justify-content-end">
+                    <span className="mt-1 ml-auto d-inline text-white">
                         <i onClick={() => {
                             setEditing(false)
                             updateItem(cachedItem)
                         }}
-                           className={`fas fa-check fa-lg mr-3 text-white`}/>
+                           className={`fas fa-check fa-lg mx-2`}/>
                         <i onClick={() => {
                             if (!active) {
                                 setEditing(false)
                                 deleteItem(cachedItem)
                             }
                             else{
-                                alert(`Invalid delete: ${item.title}`)
+                                alert(`Invalid delete: ${item.title} is currently selected`)
                             }
                         }}
-                           className={`fas fa-minus-circle fa-lg text-white`}/>
+                           className={`fas fa-minus-circle fa-lg`}/>
                     </span>
-                </div>
+                </li>
             }
         </>
     )

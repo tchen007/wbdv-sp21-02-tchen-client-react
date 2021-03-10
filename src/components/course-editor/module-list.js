@@ -30,16 +30,15 @@ const ModuleList = (
                 <ul className="nav list-group col-12">
                     {
                         courseModules.map(module =>
-                            <li className={`list-group-item col-12
-                                ${module._id === moduleId ? "active" : ""} `}
-                                key={module._id}>
-                                <EditableItem
-                                    path={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
-                                    updateItem={updateModule}
-                                    deleteItem={deleteModule}
-                                    active={module._id === moduleId}
-                                    item={module}/>
-                            </li>
+                            <EditableItem
+                                key={module._id}
+                                path={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
+                                updateItem={updateModule}
+                                deleteItem={deleteModule}
+                                active={module._id === moduleId}
+                                item={module}
+                                type={"list"}
+                            />
                         )
                     }
                     <i onClick={() => createModule(courseId, courseModules.length)}
