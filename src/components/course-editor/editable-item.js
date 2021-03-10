@@ -17,8 +17,8 @@ const EditableItem = (
     }
 
     const listStyle = "list-group-item"
-    const tabStyle = "nav-link rounded"
-    const pillStyle = "nav-item rounded mr-2"
+    const tabStyle = "nav-link rounded pb-3"
+    const pillStyle = "nav-item rounded mr-2 pb-2"
     let style;
 
     const setStyle = () => {
