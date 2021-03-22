@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import {useParams} from "react-router-dom";
-import topicService from "../../services/topic-service"
+import topicService from "../../services/topic-service";
 import EditableItem from "./editable-item";
 
 const TopicPills = (
@@ -19,7 +19,7 @@ const TopicPills = (
     }, [lessonId])
 
     return(
-        <div className="mt-5">
+        <div className="mt-4">
             { lessonTopics.length > 0 &&
                 <ul className="nav nav-pills border border-white col-12 nav-justified">
                     {

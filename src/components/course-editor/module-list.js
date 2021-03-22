@@ -9,7 +9,6 @@ import {connect} from 'react-redux'
 import {useParams} from "react-router-dom";
 import moduleService from "../../services/module-service";
 import EditableItem from "./editable-item";
-// import CourseService from "../../services/course-service";
 
 const ModuleList = (
     {

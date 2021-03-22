@@ -19,10 +19,10 @@ export const findWidgetsForTopic = (topicId) => {
 // export const findAllWidgets() OPTIONAL
 // export const findWidgetById(widgetId) OPTIONAL
 
-export const updateWidget = (widgetId, topic) => {
+export const updateWidget = (widgetId, widget) => {
     return fetch(`${BASE_URL}${WIDGETS_PATH}/${widgetId}`, {
         method: PUT,
-        body: JSON.stringify(topic),
+        body: JSON.stringify(widget),
         headers: HEADER
     })
         .then(response => response.json())

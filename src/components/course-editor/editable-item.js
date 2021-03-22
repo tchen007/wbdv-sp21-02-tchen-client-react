@@ -55,7 +55,6 @@ const EditableItem = (
             }
             { editing &&
                 <li className={`${style} col-12 px-3 py-3 bg-primary ${active ? "active " : ""} `}>
-                {/*// className={`py-2 col-11 rounded ${active ? "" : "bg-dark"} text-left custom-control-inline`}>*/}
                     <input className="form-control col-7 custom-control-inline"
                        onChange={(event) => setCachedItem(
                            {...cachedItem, title: event.target.value}

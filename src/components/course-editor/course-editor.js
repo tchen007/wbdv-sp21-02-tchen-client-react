@@ -7,6 +7,7 @@ import React, {useEffect, useState} from "react";
 import moduleReducer from "../../reducers/module-reducer";
 import lessonReducer from "../../reducers/lesson-reducer";
 import topicReducer from "../../reducers/topic-reducer";
+import widgetReducer from "../../reducers/widget-reducer";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import CourseService from "../../services/course-service";
@@ -19,7 +20,8 @@ import WidgetList from "../widgets/widget-list";
 const reducer = combineReducers({
     moduleReducer,
     lessonReducer,
-    topicReducer
+    topicReducer,
+    widgetReducer
 })
 
 const store = createStore(reducer)
