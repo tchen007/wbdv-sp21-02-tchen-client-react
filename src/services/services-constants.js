@@ -6,7 +6,8 @@ export const LESSONS_URL = 'https://wbdv-generic-server.herokuapp.com/api/tchen0
 export const TOPICS_URL = 'https://wbdv-generic-server.herokuapp.com/api/tchen007/topics' // /Topic_ID
 
 // Constants for self-hosted java server
-export const BASE_URL = 'http://localhost:8080/api'
+// export const BASE_URL = 'http://localhost:8080/api'
+export const BASE_URL = `https://webdev-lms.herokuapp.com/api`
 export const TOPICS_PATH = '/topics'
 export const WIDGETS_PATH = '/widgets'
 

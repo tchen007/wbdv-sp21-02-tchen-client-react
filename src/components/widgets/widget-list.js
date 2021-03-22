@@ -53,6 +53,10 @@ const WidgetList = (
                     }
                 </ul>
             }
+            {
+                topicWidgets.length == 0 &&
+                <h5 className="text-black-50 font-italic custom-control-inline mt-3">No widgets to display</h5>
+            }
             <i onClick={() => createWidget(topicId, topicWidgets.length)}
                className="fas fa-plus fa-2x mx-3 mr-5 pr-3 pb-2 mt-2 float-right"/>
         </div>
