@@ -45,8 +45,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-throw-expressions": "^7.12.13",
-    "webpack": "^5.27.1",
-    "webpack-cli": "^4.5.0"
+    "@babel/plugin-proposal-throw-expressions": "^7.12.13"
   }
 }
