@@ -64,17 +64,11 @@ const HeadingWidget = (
                             if (cachedWidget !== widget) {
                                 updateWidget(cachedWidget)
                             }
-                            const newEditingWidgetList =
-                                editingWidget.filter(item => item.id !== widget.id)
-                            setEditingWidget([newEditingWidgetList])
                         }}
                            className={`fas fa-check fa-lg mr-3`}/>
                         <i onClick={() => {
                             setEditing(false)
                             deleteWidget(cachedWidget)
-                            const newEditingWidgetList =
-                                editingWidget.filter(item => item.id !== widget.id)
-                            setEditingWidget([newEditingWidgetList])
                         }}
                            className={`fas fa-minus-circle fa-lg`}/>
                 </span>

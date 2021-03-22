@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 
 
 const ParagraphWidget = (
@@ -6,23 +6,16 @@ const ParagraphWidget = (
         widget,
         updateWidget,
         deleteWidget,
-        setEditingWidget,
-        editingWidget,
-        isEditing
     }) => {
-    const [editing, setEditing] = useState(isEditing)
+    const [editing, setEditing] = useState(false)
     const [cachedWidget, setCachedWidget] = useState(widget)
     return (
         <>
             { !editing &&
-            <> <p>
-                {cachedWidget.text}
-                </p>
+            <> <p className="col-11 custom-control-inline mt-3">{cachedWidget.text}</p>
                 <i onClick={(event) =>
-                {
                     setEditing(true)
-                    setEditingWidget([...editingWidget, widget.id])
-                }}
+                }
                    className="fas fa-edit fa-lg"/>
             </>
             }
@@ -33,7 +26,7 @@ const ParagraphWidget = (
                             onChange={(event) => setCachedWidget(
                                 {...cachedWidget, type: event.target.value}
                             )}
-                            value={cache.type}
+                            value={cachedWidget.type}
                     >
                         <option value={"HEADING"}>Heading</option>
                         <option value={"PARAGRAPH"}>Paragraph</option>
@@ -52,7 +45,7 @@ const ParagraphWidget = (
                             }}
                                className={`fas fa-minus-circle fa-lg`}/>
                     </span>
-                    <input className="form-control col-11 custom-control-inline mt-3"
+                    <textarea className="form-control col-11 custom-control-inline mt-3 outflow-auto" rows="5"
                            onChange={(event) => setCachedWidget(
                                {...cachedWidget, text: event.target.value}
                            )}

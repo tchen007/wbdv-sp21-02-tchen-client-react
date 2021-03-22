@@ -14,7 +14,6 @@ const WidgetList = (
         updateWidget,
     }) => {
     const {topicId} = useParams();
-    const [editingWidget, setEditingWidget] = useState([]);
 
     useEffect(() => {
         findWidgetsForTopic(topicId);
@@ -27,9 +26,6 @@ const WidgetList = (
                     widget={w}
                     updateWidget={updateWidget}
                     deleteWidget={deleteWidget}
-                    setEditingWidget={setEditingWidget}
-                    editingWidget={editingWidget}
-                    isEditing={editingWidget.includes(w.id)}
                 >
                 </HeadingWidget>
             case "PARAGRAPH":
@@ -37,11 +33,6 @@ const WidgetList = (
                     widget={w}
                     updateWidget={updateWidget}
                     deleteWidget={deleteWidget}
-                    updateWidget={updateWidget}
-                    deleteWidget={deleteWidget}
-                    setEditingWidget={setEditingWidget}
-                    editingWidget={editingWidget}
-                    isEditing={editingWidget.includes(w.id)}
                 >
                 </ParagraphWidget>
         }
@@ -49,10 +40,6 @@ const WidgetList = (
 
     return (
         <div className="mt-4">
-            <h1>
-                Widget List {topicWidgets.length}
-                {JSON.stringify(topicWidgets)}
-            </h1>
             {topicWidgets.length > 0 &&
                 <ul className="list-group">
                     {
