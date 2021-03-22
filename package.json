@@ -45,6 +45,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-throw-expressions": "^7.12.13",
+    "@babel/plugin-proposal-throw-expressions": "^7.12.13"
   }
 }
