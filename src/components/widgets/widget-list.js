@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import widgetService from "../../services/widget-service";
 import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
+import ListWidget from "./list-widget";
 
 const WidgetList = (
     {
@@ -14,27 +15,36 @@ const WidgetList = (
         updateWidget,
     }) => {
     const {topicId} = useParams();
+    const [editingWidget, setEditingWidget] = useState({})
 
     useEffect(() => {
         findWidgetsForTopic(topicId);
     }, [topicId])
 
     const renderWidgetType = (w) => {
+        console.log(w)
         switch (w.type) {
             case "HEADING":
                 return <HeadingWidget
                     widget={w}
-                    updateWidget={updateWidget}
-                    deleteWidget={deleteWidget}
+                    editing={w.id === editingWidget.id}
+                    setWidget={setEditingWidget}
                 >
                 </HeadingWidget>
             case "PARAGRAPH":
                 return <ParagraphWidget
                     widget={w}
-                    updateWidget={updateWidget}
-                    deleteWidget={deleteWidget}
+                    editing={w.id === editingWidget.id}
+                    setWidget={setEditingWidget}
                 >
                 </ParagraphWidget>
+            case "LIST":
+                return <ListWidget
+                    widget={w}
+                    editing={w.id === editingWidget.id}
+                    setWidget={setEditingWidget}
+                >
+                </ListWidget>
         }
     }
 
@@ -45,9 +55,34 @@ const WidgetList = (
                     {
                         topicWidgets.map(widget =>
                         <li className="list-group-item mr-5" key={widget.id}>
-                            {
-                                renderWidgetType(widget)
+                            { widget.id !== editingWidget.id &&
+                                <>
+                                    {renderWidgetType(widget)}
+                                <i onClick={(event) =>
+                                    setEditingWidget(widget)
+                                    } className="fas fa-edit fa-lg"/>
+                                </>
                             }
+
+                            { widget.id === editingWidget.id &&
+                            <>
+                                <span className="float-right mt-3">
+                                    <i onClick={() => {
+                                        updateWidget(editingWidget)
+                                        setEditingWidget({})
+                                    }}
+                                       className={`fas fa-check fa-lg mr-3`}/>
+                                    <i onClick={() => {
+                                        setEditingWidget({})
+                                        deleteWidget(editingWidget)
+                                    }}
+                                       className={`fas fa-minus-circle fa-lg`}/>
+                                </span>
+                                {renderWidgetType(editingWidget)}
+
+                            </>
+                            }
+
                         </li>
                     )
                     }
@@ -82,7 +117,7 @@ const dispatchToProps = (dispatch) => {
             if (topicId !== "undefined" && typeof topicId !== "undefined") {
                 widgetService.createWidget(topicId,
                     {name: `New Widget: ${topicWidgetsLen}`,
-                        type: "HEADING", size: 1, widgetOrder: `${topicWidgetsLen}`,
+                        type: "HEADING", size: 1, isOrdered: false,
                         text: "Heading...edit here"
                     })
                     .then((newWidget) =>
@@ -106,7 +141,6 @@ const dispatchToProps = (dispatch) => {
                 )
         },
         updateWidget: (widget) => {
-            console.log('updateWidget', widget.id, widget)
             widgetService.updateWidget(widget.id, widget)
                 .then(status =>
                     dispatch({

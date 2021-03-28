@@ -4,52 +4,32 @@ import React, {useState} from 'react'
 const ParagraphWidget = (
     {
         widget,
-        updateWidget,
-        deleteWidget,
+        editing,
+        setWidget
     }) => {
-    const [editing, setEditing] = useState(false)
-    const [cachedWidget, setCachedWidget] = useState(widget)
     return (
         <>
             { !editing &&
-            <> <p className="col-11 custom-control-inline mt-3">{cachedWidget.text}</p>
-                <i onClick={(event) =>
-                    setEditing(true)
-                }
-                   className="fas fa-edit fa-lg"/>
-            </>
+            <p className="col-11 custom-control-inline mt-3">{widget.text}</p>
             }
             {
                 editing &&
-                <form className="form-group">
-                    <select className="form-control col-11 custom-control-inline mt-3"
-                            onChange={(event) => setCachedWidget(
-                                {...cachedWidget, type: event.target.value}
+                <form className="form-group col-11">
+                    <select className="form-control custom-control-inline mt-3"
+                            onChange={(event) =>
+                                setWidget({...widget, type: event.target.value}
                             )}
-                            value={cachedWidget.type}
+                            value={widget.type}
                     >
                         <option value={"HEADING"}>Heading</option>
                         <option value={"PARAGRAPH"}>Paragraph</option>
+                        <option value={"LIST"}>List</option>
                     </select>
-                    <span>
-                            <i onClick={() => {
-                                setEditing(false)
-                                if (cachedWidget !== widget) {
-                                    updateWidget(cachedWidget)
-                                }
-                            }}
-                               className={`fas fa-check fa-lg mr-3`}/>
-                            <i onClick={() => {
-                                setEditing(false)
-                                deleteWidget(cachedWidget)
-                            }}
-                               className={`fas fa-minus-circle fa-lg`}/>
-                    </span>
-                    <textarea className="form-control col-11 custom-control-inline mt-3 outflow-auto" rows="5"
-                           onChange={(event) => setCachedWidget(
-                               {...cachedWidget, text: event.target.value}
-                           )}
-                           value={cachedWidget.text}/>
+                    <textarea className="form-control mt-3 outflow-auto" rows="5"
+                           onChange={(event) =>
+                               setWidget({...widget, text: event.target.value})
+                           }
+                           value={widget.text}/>
                 </form>
             }
         </>

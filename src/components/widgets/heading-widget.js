@@ -1,13 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 const HeadingWidget = (
     {
         widget,
-        updateWidget,
-        deleteWidget
+        editing,
+        setWidget
     }) => {
-    const [editing, setEditing] = useState(false)
-    const [cachedWidget, setCachedWidget] = useState(widget)
     const renderHeader = () => {
         switch (widget.size) {
             case 1:
@@ -38,50 +36,31 @@ const HeadingWidget = (
 }
     return <>
         { !editing &&
-            <> {renderHeader()}
-                <i onClick={(event) =>
-                    setEditing(true)
-                }
-                   className="fas fa-edit fa-lg"/>
-            </>
+            <> {renderHeader()}</>
         }
         {
             editing &&
-            <form className="form-group">
-                <select className="form-control col-11 custom-control-inline mt-3"
+            <form className="form-group col-11">
+                <select className="form-control mt-3"
                         onChange={(event) =>
-                            setCachedWidget(
-                            {...cachedWidget, type: event.target.value}
+                            setWidget({...widget, type: event.target.value}
                         )}
-                        value={cachedWidget.type}
+                        value={widget.type}
                 >
                     <option value={"HEADING"}>Heading</option>
                     <option value={"PARAGRAPH"}>Paragraph</option>
+                    <option value={"LIST"}>List</option>
                 </select>
-                <span>
-                        <i onClick={() => {
-                            setEditing(false)
-                            if (cachedWidget !== widget) {
-                                updateWidget(cachedWidget)
-                            }
-                        }}
-                           className={`fas fa-check fa-lg mr-3`}/>
-                        <i onClick={() => {
-                            setEditing(false)
-                            deleteWidget(cachedWidget)
-                        }}
-                           className={`fas fa-minus-circle fa-lg`}/>
-                </span>
-                <input className="form-control col-11 custom-control-inline mt-3"
-                       onChange={(event) => setCachedWidget(
-                           {...cachedWidget, text: event.target.value}
-                       )}
-                       value={cachedWidget.text}/>
-                <select className="form-control col-11 mt-3"
-                        onChange={(event) => setCachedWidget(
-                            {...cachedWidget, size: parseInt(event.target.value)}
-                        )}
-                        value={cachedWidget.size}
+                <input className="form-control mt-3"
+                       onChange={(event) =>
+                           setWidget({...widget, text: event.target.value})
+                       }
+                       value={widget.text}/>
+                <select className="form-control mt-3"
+                        onChange={(event) =>
+                            setWidget({...widget, size: parseInt(event.target.value)})
+                        }
+                        value={widget.size}
                         >
                         <option value={1}>Heading 1</option>
                         <option value={2}>Heading 2</option>
