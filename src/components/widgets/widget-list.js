@@ -5,6 +5,8 @@ import widgetService from "../../services/widget-service";
 import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
 import ListWidget from "./list-widget";
+import ImageWidget from "./image-widget";
+
 
 const WidgetList = (
     {
@@ -22,7 +24,6 @@ const WidgetList = (
     }, [topicId])
 
     const renderWidgetType = (w) => {
-        console.log(w)
         switch (w.type) {
             case "HEADING":
                 return <HeadingWidget
@@ -45,6 +46,13 @@ const WidgetList = (
                     setWidget={setEditingWidget}
                 >
                 </ListWidget>
+            case "IMAGE":
+                return <ImageWidget
+                    widget={w}
+                    editing={w.id === editingWidget.id}
+                    setWidget={setEditingWidget}
+                >
+                </ImageWidget>
         }
     }
 

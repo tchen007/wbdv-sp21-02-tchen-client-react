@@ -1,5 +1,4 @@
-import React, {useState} from 'react'
-import HeadingWidget from "./heading-widget";
+import React from 'react'
 
 const ListWidget = (
     {
@@ -53,6 +52,7 @@ const ListWidget = (
                 <option value={"HEADING"}>Heading</option>
                 <option value={"PARAGRAPH"}>Paragraph</option>
                 <option value={"LIST"}>List</option>
+                <option value={"IMAGE"}>Image</option>
             </select>
             <input className="mt-5 mb-3" type="checkbox" checked={widget.isOrdered}
                    onChange={(event) =>
