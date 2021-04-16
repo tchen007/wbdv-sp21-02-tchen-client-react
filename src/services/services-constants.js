@@ -7,8 +7,9 @@ export const TOPICS_URL = 'https://wbdv-generic-server.herokuapp.com/api/tchen00
 
 // Constants for self-hosted java server
 // Future to dos: Extract out and set as env variables
-export const BASE_URL = 'http://localhost:4000/api'
+export const NODE_BASE_URL = 'http://localhost:4000/api'
 // export const BASE_URL = 'https://webdev-lms.herokuapp.com/api'
+export const BASE_URL = 'http://localhost:8080/api'
 export const TOPICS_PATH = '/topics'
 export const WIDGETS_PATH = '/widgets'
 export const QUIZZES_PATH = '/quizzes'
@@ -22,5 +23,5 @@ export const HEADER = {'content-type': 'application/json'}
 export default {
     MODULES_URL, LESSONS_URL, COURSES_URL, TOPICS_URL,
     PUT, POST, DELETE, HEADER,
-    BASE_URL, TOPICS_PATH, WIDGETS_PATH, QUIZZES_PATH, QUESTIONS_PATH
+    NODE_BASE_URL, BASE_URL, TOPICS_PATH, WIDGETS_PATH, QUIZZES_PATH, QUESTIONS_PATH
 }

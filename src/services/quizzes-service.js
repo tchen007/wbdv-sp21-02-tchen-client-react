@@ -1,6 +1,6 @@
-import {BASE_URL, QUIZZES_PATH} from './services-constants'
+import {NODE_BASE_URL, QUIZZES_PATH} from './services-constants'
 
-const QUIZZES_URL = BASE_URL + QUIZZES_PATH
+const QUIZZES_URL = NODE_BASE_URL + QUIZZES_PATH
 
 export const findAllQuizzes = () => {
     return fetch(QUIZZES_URL)
