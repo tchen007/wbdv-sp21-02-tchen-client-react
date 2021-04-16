@@ -48,6 +48,13 @@ const CourseRow = (
                     className="form-control"/>
                 }
             </td>
+            <td className="d-none d-sm-table-cell">
+                <Link
+                    to={`/courses/${course._id}/quizzes`}>
+                    Quizzes
+                </Link>
+
+            </td>
             <td className="d-none d-sm-table-cell">{owner}</td>
             <td className="d-none d-md-table-cell">{lastModified}</td>
             {/*Icons for row, delete and edit only show when editing is true*/}

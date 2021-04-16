@@ -18,6 +18,7 @@ export default class CourseTable extends React.Component {
                 <thead>
                     <tr className="border-3">
                         <th className="wbdv-table-width-title">Title</th>
+                        <th className="wbdv-table-width-other d-none d-sm-table-cell">Quizzes</th>
                         <th className="wbdv-table-width-other d-none d-sm-table-cell">Owned by</th>
                         <th className="wbdv-table-width-other d-none d-md-table-cell">Last modified</th>
                         <th className="wbdv-table-width-other text-right">
