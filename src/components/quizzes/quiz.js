@@ -79,16 +79,20 @@ const Quiz = () => {
                         Past Attempts: {attempts.length}
                     </h3>
                     <table className="table">
-                        <tr>
-                            <th>Past Scores</th>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Past Scores</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         {attempts.map((attempt) => {
                             return (
-                                <tr>
+                                <tr key = {attempt._id}>
                                     <td>{attempt.score}</td>
                                 </tr>
                             )
                         })}
+                        </tbody>
                     </table>
                 </div>
             </div>
