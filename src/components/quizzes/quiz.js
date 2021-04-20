@@ -1,31 +1,50 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useParams} from "react-router-dom";
-import {findQuestionsForQuiz} from "../../services/questions-service";
+import quizzesService from "../../services/quizzes-service"
+import questionService from "../../services/questions-service"
 import TrueFalse from "./true-false-question";
 import MultipleChoice from "./multiple-choice-question";
 
 const Quiz = () => {
     const {courseId, quizId} = useParams();
     const [questions, setQuestions] = useState([])
+    const [score, setScore] = useState(null)
+    const [checkAnswer, setCheckAnswer] = useState(false)
+    const [attempts, setAttempts] = useState([])
 
     useEffect(() => {
-        findQuestionsForQuiz(quizId)
+        questionService.findQuestionsForQuiz(quizId)
             .then(quizQuestions => setQuestions(quizQuestions))
-    }, [quizId])
+        quizzesService.findAttempts(quizId).then(attempts => setAttempts(attempts))
+    }, [])
 
     const renderQuestionType = (q) => {
         switch (q.type) {
             case "MULTIPLE_CHOICE":
                 return <MultipleChoice
                     question={q}
+                    setQuestions={setQuestions}
+                    allQuestions={questions}
+                    checkAnswer={checkAnswer}
                 >
                 </MultipleChoice>
             case "TRUE_FALSE":
                 return <TrueFalse
                     question={q}
+                    setQuestions={setQuestions}
+                    allQuestions={questions}
+                    checkAnswer={checkAnswer}
                 >
                 </TrueFalse>
         }
+    }
+
+    const gradeQuiz = () => {
+        quizzesService.submitQuiz(quizId, questions)
+            .then(res => {
+                setScore(res.score)
+                setCheckAnswer(true)
+            })
     }
 
     return (
@@ -52,9 +71,27 @@ const Quiz = () => {
                         </li>
                     )
                 }
+                <button className="ml-1 mt-3 btn btn-primary" onClick={() => gradeQuiz()}>Grade</button>
+                {score != null && <h3 className="mt-4">Current Score: {score}</h3>}
+
+                <div className="mt-4">
+                    <h3>
+                        Past Attempts: {attempts.length}
+                    </h3>
+                    <table className="table">
+                        <tr>
+                            <th>Past Scores</th>
+                        </tr>
+                        {attempts.map((attempt) => {
+                            return (
+                                <tr>
+                                    <td>{attempt.score}</td>
+                                </tr>
+                            )
+                        })}
+                    </table>
+                </div>
             </div>
-
-
 
         </div>
     )

@@ -1,11 +1,22 @@
 import React, {useEffect, useState} from 'react'
+import quizzesService from "../../services/quizzes-service";
 
 const TrueFalse = (
     {
         question,
+        setQuestions,
+        allQuestions,
+        checkAnswer
     }) => {
     const [answer, setAnswer] = useState("")
-    const [checkAnswer, setCheckAnswer] = useState(false)
+
+    const updateAnswer = (choice) => {
+        setAnswer(choice);
+        let updatedQuestions = [...allQuestions]
+        const questionIndex = allQuestions.findIndex(q => q._id === question._id)
+        updatedQuestions[questionIndex] = {...question, answer: choice}
+        setQuestions(updatedQuestions)
+    }
 
     return (
         <>
@@ -21,26 +32,26 @@ const TrueFalse = (
                 }
             </div>
             <div className={`list-group-item
-                ${checkAnswer === true && answer === "true" && answer === question.correct ? "list-group-item-success" : ""}
+                ${checkAnswer === true && "true" === question.correct ? "list-group-item-success" : ""}
                 ${checkAnswer === true && answer === "true" && answer !== question.correct ? "list-group-item-danger" : ""}`}>
                 <input type="radio" name={question._id}
-                       id="true_choice" onClick={() => setAnswer("true")}/>
+                       id="true_choice" onClick={() => updateAnswer("true")}/>
                 <label className="ml-3 form-check-label" htmlFor="true_choice">
                     True</label>
                 <i className={`
-                ${checkAnswer === true && answer === "true" && answer == question.correct ? "mt-1 fas fa-check float-right" : ""}
+                ${checkAnswer === true && "true" == question.correct ? "mt-1 fas fa-check float-right" : ""}
                 ${checkAnswer === true && answer === "true" && answer != question.correct ? "mt-1 fas fa-times float-right" : ""}`}>
                 </i>
             </div>
             <div className={`list-group-item
-                ${checkAnswer === true && answer === "false" && answer === question.correct ? "list-group-item-success" : ""}
+                ${checkAnswer === true && "false" === question.correct ? "list-group-item-success" : ""}
                 ${checkAnswer === true && answer === "false" && answer !== question.correct ? "list-group-item-danger" : ""}`}>
                 <input type="radio" name={question._id}
-                       id="false_choice" onClick={() => setAnswer("false")}/>
+                       id="false_choice" onClick={() => updateAnswer("false")}/>
                 <label className="ml-3 form-check-label" htmlFor="false_choice">
                     False</label>
                 <i className={`
-                ${checkAnswer === true && answer === "false" && answer == question.correct ? "mt-1 fas fa-check float-right" : ""}
+                ${checkAnswer === true && "false" == question.correct ? "mt-1 fas fa-check float-right" : ""}
                 ${checkAnswer === true && answer === "false" && answer != question.correct ? "mt-1 fas fa-times float-right" : ""}`}>
                 </i>
             </div>
@@ -52,7 +63,6 @@ const TrueFalse = (
                 checkAnswer === false &&
                 <div className="mt-3">Your Answer:</div>
             }
-            <button className="ml-1 mt-3 btn btn-primary" onClick={() => setCheckAnswer(true)}>Grade</button>
         </>
     )
 }

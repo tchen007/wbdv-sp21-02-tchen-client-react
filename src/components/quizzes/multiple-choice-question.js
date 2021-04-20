@@ -3,9 +3,19 @@ import React, {useEffect, useState} from 'react'
 const MultipleChoice = (
     {
         question,
+        setQuestions,
+        allQuestions,
+        checkAnswer
     }) => {
     const [answer, setAnswer] = useState("")
-    const [checkAnswer, setCheckAnswer] = useState(false)
+
+    const updateAnswer = (choice) => {
+        setAnswer(choice);
+        let updatedQuestions = [...allQuestions]
+        const questionIndex = allQuestions.findIndex(q => q._id === question._id)
+        updatedQuestions[questionIndex] = {...question, answer: choice}
+        setQuestions(updatedQuestions)
+    }
 
     return (
             <>
@@ -25,15 +35,15 @@ const MultipleChoice = (
                     question.choices.map((choice, index) => {
                         return (
                             <div className={`list-group-item
-                                ${checkAnswer === true && answer === choice && answer == question.correct ? "list-group-item-success" : ""}
+                                ${checkAnswer === true && choice == question.correct ? "list-group-item-success" : ""}
                                 ${checkAnswer === true && answer === choice && answer != question.correct ? "list-group-item-danger" : ""}`}
                                  key={index}>
                                 <input type="radio" name={question._id} id={choice}
-                                       onClick={() => setAnswer(choice)}/>
+                                       onClick={() => updateAnswer(choice)}/>
                                 <label className="ml-3 form-check-label" htmlFor={choice}>
                                     {choice}</label>
                                 <i className={`
-                                    ${checkAnswer === true && answer === choice && answer == question.correct ? "mt-1 fas fa-check float-right" : ""}
+                                    ${checkAnswer === true && choice == question.correct ? "mt-1 fas fa-check float-right" : ""}
                                     ${checkAnswer === true && answer === choice && answer != question.correct ? "mt-1 fas fa-times float-right" : ""}`}>
                                 </i>
                             </div>
@@ -48,7 +58,7 @@ const MultipleChoice = (
                     checkAnswer === false &&
                     <div className="mt-3">Your Answer:</div>
                 }
-                <button className="ml-1 mt-3 btn btn-primary" onClick={() => setCheckAnswer(true)}>Grade</button>
+                {/*<button className="ml-1 mt-3 btn btn-primary" onClick={() => setCheckAnswer(true)}>Grade</button>*/}
             </>
         )
 }
